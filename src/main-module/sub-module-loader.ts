@@ -18,15 +18,24 @@ const modulesToLoad = [
   'billing',
 ];
 
+const onSuccessImport = (module: any) => {
+    if (process.env.NODE_ENV !== 'production') console.log('Adding module', module);
+
+    module.default.install(shell);
+};
+
+const onErrorImport = (error: Error) => {
+    if (process.env.NODE_ENV !== 'production') console.error('Import promise rejected: ', error);
+};
+
 modulesToLoad.forEach(moduleName => {
-    try {
-        import(/* webpackInclude: /dist_submodules/ */ `../../dist_submodules/submodule-${moduleName}.js`).then(module => {
-            console.log(module);
-            module.default.install(shell);
-        }).catch(error => {
-            console.log('Import promise rejected: ', error);
-        });
-    } catch (error) {
-        console.log('Error while importing', error);
+    if (process.env.NODE_ENV === 'production') {
+        import(/* webpackInclude: /dist_submodules/ */ `../../dist_submodules/submodule-${moduleName}.js`)
+            .then(onSuccessImport)
+            .catch(onErrorImport);
+    } else {
+        import(/* webpackInclude: /submodules/ */ `../submodules/submodule-${moduleName}/boot.ts`)
+            .then(onSuccessImport)
+            .catch(onErrorImport);
     }
 });

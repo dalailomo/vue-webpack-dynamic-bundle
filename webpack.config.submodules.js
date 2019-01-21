@@ -24,9 +24,9 @@ module.exports = (env) => {
             }
         },
         entry: {
-            'submodule-alert': './src/child-modules/alert-module/boot.ts',
-            'submodule-user': './src/child-modules/user-module/boot.ts',
-            'submodule-billing': './src/child-modules/billing-module/boot.ts',
+            'submodule-alert': './src/submodules/submodule-alert/boot.ts',
+            'submodule-user': './src/submodules/submodule-user/boot.ts',
+            'submodule-billing': './src/submodules/submodule-billing/boot.ts',
         },
         module: {
             rules: [{
