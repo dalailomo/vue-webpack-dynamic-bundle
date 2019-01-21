@@ -18,12 +18,17 @@
       app
     >
       <v-list dense>
-        <v-list-tile>
-          <v-list-tile-action>
-            <v-icon>exit_to_app</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Open Temporary Drawer</v-list-tile-title>
+        <!-- Static routes -->
+        <v-list-tile v-for="route in $router.options.routes" :key="route.name" @click="() => $router.push({ name: route.name })">
+          <v-list-tile-content >
+            <v-list-tile-title>{{ route.name }}</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+
+        <!-- Dynamic routes -->
+        <v-list-tile v-for="route in shell._routes" :key="route.name" @click="() => $router.push({ name: route[0].name })">
+          <v-list-tile-content >
+            <v-list-tile-title>{{ route[0].name }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
