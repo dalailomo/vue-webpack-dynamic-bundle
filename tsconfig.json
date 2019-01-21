@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "experimentalDecorators": true,
+    "lib": [
+      "es5",
+      "es2018",
+      "dom",
+      "scripthost"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "paths": {
+      "@services": [
+        "services"
+      ],
+      "@helpers": [
+        "helpers"
+      ],
+      "@interfaces": [
+        "interfaces"
+      ],
+      "@components": [
+        "components"
+      ],
+      "@store": [
+        "store"
+      ],
+    },
+    "skipDefaultLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+    "target": "es5",
+    "types": [
+      "webpack-env"
+    ]
+  },
+  "exclude": [
+    "bin",
+    "node_modules"
+  ],
+  "include": [
+    "./src/**/*"
+  ]
+}
