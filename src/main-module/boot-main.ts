@@ -3,10 +3,11 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 
 import './class-component-hooks';
-import { shell } from './sub-module-loader';
+import { loadSubmodules } from './sub-module-loader';
 
 import router from './router';
 import store from './store';
+import { instances } from './shell';
 
 const theme: any = {
     theme: {
@@ -15,20 +16,22 @@ const theme: any = {
 };
 Vue.use(Vuetify, theme);
 
-Vue.mixin({
-    data: function() {
-      return {
-        get shell() {
-          return shell;
+loadSubmodules(() => {
+    Vue.mixin({
+        data: function() {
+          return {
+            get shellInstances() {
+              return instances;
+            }
+          };
         }
-      };
-    }
-});
+    });
 
-// tslint:disable
-const vue = new Vue({
-    el: '#app-root',
-    router: router,
-    store: store,
-    render: h => h(require('./components/app.vue')),
+    // tslint:disable
+    const vue = new Vue({
+        el: '#app-root',
+        router: router,
+        store: store,
+        render: h => h(require('./components/app.vue')),
+    });
 });

@@ -1,7 +1,10 @@
 <template>
     <v-layout flex column align-center>
         <p>{{ paragraph }}</p>
-        <v-btn>Hello I am a vuetify button from a child module</v-btn>
+
+        <p>Count: {{ counter }}</p>
+        <v-btn @click="incr(1)">Add</v-btn>
+        <v-btn @click="decr(1)">Sub</v-btn>
     </v-layout>
 </template>
 

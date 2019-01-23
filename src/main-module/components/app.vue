@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app-root">
   <v-app id="inspire">
     <v-toolbar
       color="blue-grey"
@@ -26,7 +26,7 @@
         </v-list-tile>
 
         <!-- Dynamic routes -->
-        <v-list-tile v-for="route in shell._routes" :key="route.name" @click="() => $router.push({ name: route[0].name })">
+        <v-list-tile v-for="route in submoduleRoutes" :key="route[0].name" @click="() => $router.push({ name: route[0].name })">
           <v-list-tile-content >
             <v-list-tile-title>{{ route[0].name }}</v-list-tile-title>
           </v-list-tile-content>
@@ -35,7 +35,9 @@
     </v-navigation-drawer>
 
     <v-content>
-      <router-view />
+      <v-container fuild>
+        <router-view />
+      </v-container>
     </v-content>
     <v-footer color="blue-grey" class="white--text" app>
       <span>Vuetify</span>
